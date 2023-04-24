@@ -15,10 +15,10 @@ SOURCES += \
     choosenetworkcarddialog.cpp \
     chooseramdialog.cpp \
     choosesoundcarddialog.cpp \
-    cpu.cpp \
     item.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    resultdialog.cpp
 
 HEADERS += \
     choosecpudialog.h \
@@ -27,9 +27,9 @@ HEADERS += \
     choosenetworkcarddialog.h \
     chooseramdialog.h \
     choosesoundcarddialog.h \
-    cpu.h \
     item.h \
-    mainwindow.h
+    mainwindow.h \
+    resultdialog.h
 
 FORMS += \
     choosecpudialog.ui \
@@ -38,7 +38,8 @@ FORMS += \
     choosenetworkcarddialog.ui \
     chooseramdialog.ui \
     choosesoundcarddialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    resultdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

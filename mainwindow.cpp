@@ -16,6 +16,7 @@
 #include "choosegpudialog.h"
 #include "choosenetworkcarddialog.h"
 #include "choosesoundcarddialog.h"
+#include "resultdialog.h"
 
 #include <QMessageBox>
 #include <QInputDialog>
@@ -79,6 +80,32 @@ void MainWindow::init_gui()
 
     auto btnOK = new QPushButton("OK");
     btnOK->setIcon(style()->standardIcon(QStyle::SP_DialogOkButton));
+    connect(btnOK, &QPushButton::clicked, this, [this](){
+        auto condition = QString("<span style='background: red'>Not Selected</span>");
+
+        if (
+                lblMB->text().contains(condition)   ||
+                lblCPU->text().contains(condition)  ||
+                lblGPU->text().contains(condition)  ||
+                lblRAM1->text().contains(condition) ||
+                lblRAM2->text().contains(condition)
+                ) {
+            QMessageBox::warning(this, "Warning", "You need to fill all the red fields!");
+        } else {
+            auto resDlg = new ResultDialog(this);
+
+            resDlg->setlblMBText(lblMB->text());
+            resDlg->setlblCPUText(lblCPU->text());
+            resDlg->setlblGPUText(lblGPU->text());
+            resDlg->setlblRAM1Text(lblRAM1->text());
+            resDlg->setlblRAM2Text(lblRAM1->text());
+            resDlg->setlblPCI1Text(lblNetworkCard->text());
+            resDlg->setlblPCI2Text(lblSoundCard->text());
+
+            resDlg->exec();
+        }
+    });
+
     auto btnCancel = new QPushButton("Cancel");
     btnCancel->setIcon(style()->standardIcon(QStyle::SP_DialogCancelButton));
     connect(btnCancel, &QPushButton::clicked, this, &MainWindow::close);
